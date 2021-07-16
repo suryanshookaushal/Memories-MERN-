@@ -3,15 +3,20 @@ import mongoose from 'mongoose';
 import express from 'express';
 const app = express()
 
-import {getPost} from './controllers/post.js'
+import {getPost, addpost} from './controllers/post.js'
 
 //Setting up the database first
 mongoose.connect('mongodb://127.0.0.1:27017/memories', {
     useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true
 })
 
+//Setting up the app
+app.use(express.urlencoded({extended: true}));
+app.use(express.json())
+
 //Routes
 app.get('/', getPost)
+app.post('/', addpost)
 
 
 const port = process.env.PORT || 5000
