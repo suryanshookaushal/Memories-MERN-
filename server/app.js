@@ -1,6 +1,7 @@
 //Importing the libraries
 import mongoose from 'mongoose';
 import express from 'express';
+import cors from 'cors'
 const app = express()
 
 import {getPost, addpost} from './controllers/post.js'
@@ -13,6 +14,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/memories', {
 //Setting up the app
 app.use(express.urlencoded({extended: true}));
 app.use(express.json())
+app.use(cors())
 
 //Routes
 app.get('/', getPost)
