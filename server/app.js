@@ -4,7 +4,7 @@ import express from 'express';
 import cors from 'cors'
 const app = express()
 
-import {getPost, addpost} from './controllers/post.js'
+import {getPost, addpost, updatepost} from './controllers/post.js'
 
 //Setting up the database first
 mongoose.connect('mongodb://127.0.0.1:27017/memories', {
@@ -19,6 +19,7 @@ app.use(cors())
 //Routes
 app.get('/', getPost)
 app.post('/', addpost)
+app.patch('/:id', updatepost)
 
 
 const port = process.env.PORT || 5000
